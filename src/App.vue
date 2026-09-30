@@ -135,35 +135,35 @@
     <div class="max-w-xl mx-auto">
       
       <!-- ONBOARDING VIEW -->
-      <div v-if="!hasStarted" class="backdrop-blur-xl p-8 rounded-3xl border transition-all" :class="bgCard">
+      <div v-if="!hasStarted" class="backdrop-blur-xl p-5 sm:p-8 rounded-3xl border transition-all" :class="bgCard">
         <div class="flex justify-between items-start mb-2">
           <h1 class="text-3xl font-bold" :class="textTitle">Setup Your Tracker</h1>
-          <button @click="toggleTheme" class="p-2 backdrop-blur-md border rounded-xl flex items-center justify-center transition-all w-10 h-10" :class="btnSecondary" title="Toggle Theme">
+          <button @click="toggleTheme" class="p-2 backdrop-blur-md border rounded-xl flex items-center justify-center transition-all w-10 h-10 shrink-0" :class="btnSecondary" title="Toggle Theme">
             <span v-if="isDark">☀️</span><span v-else>🌙</span>
           </button>
         </div>
-        <p class="mb-8 font-medium" :class="textSub">Enter your take-home pay and log your recurring bills.</p>
+        <p class="mb-8 font-medium text-sm sm:text-base" :class="textSub">Enter your take-home pay and log your recurring bills.</p>
         
         <div class="mb-6">
           <label class="block text-sm font-bold mb-2" :class="textSub">Monthly Net Pay (PHP)</label>
-          <input v-model="inputNetPay" type="number" placeholder="e.g. 44592" class="w-full p-4 rounded-2xl outline-none transition-all" :class="bgInput">
+          <input v-model="inputNetPay" type="number" placeholder="e.g. 44592" class="w-full p-4 rounded-2xl outline-none transition-all min-w-0" :class="bgInput">
         </div>
 
         <div class="mb-8">
           <label class="block text-sm font-bold mb-2" :class="textSub">Fixed Bills</label>
           <div class="flex flex-col sm:flex-row gap-3 mb-4">
-			<input v-model="newBill.name" type="text" placeholder="Bill Name" class="flex-1 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
-			<div class="flex gap-3">
-				<input v-model="newBill.amount" type="number" placeholder="Amount" class="flex-1 sm:w-32 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
-				<button @click="addFixedBill" class="px-6 font-bold rounded-2xl transition-colors border shadow-sm" :class="btnSecondary">+</button>
-			</div>
-		</div>
+            <input v-model="newBill.name" type="text" placeholder="Bill Name" class="w-full sm:flex-1 p-4 rounded-2xl outline-none transition-all min-w-0" :class="bgInput">
+            <div class="flex gap-3 w-full sm:w-auto">
+              <input v-model="newBill.amount" type="number" placeholder="Amount" class="flex-1 sm:w-32 p-4 rounded-2xl outline-none transition-all min-w-0" :class="bgInput">
+              <button @click="addFixedBill" class="px-6 font-bold rounded-2xl transition-colors border shadow-sm shrink-0" :class="btnSecondary">+</button>
+            </div>
+          </div>
           
           <div v-for="(bill, index) in fixedBills" :key="index" class="flex justify-between items-center p-4 rounded-2xl mb-2 border shadow-sm" :class="bgItem">
-            <span class="font-semibold">{{ bill.name }}</span>
-            <div class="flex items-center gap-4">
+            <span class="font-semibold truncate pr-4">{{ bill.name }}</span>
+            <div class="flex items-center gap-4 shrink-0">
               <span class="font-bold">{{ formatCurrency(Number(bill.amount)) }}</span>
-              <button @click="removeFixedBill(index)" class="text-red-400 hover:text-red-500 font-bold">✕</button>
+              <button @click="removeFixedBill(index)" class="text-red-400 hover:text-red-500 font-bold p-1">✕</button>
             </div>
           </div>
         </div>
