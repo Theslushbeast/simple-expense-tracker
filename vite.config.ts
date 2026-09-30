@@ -9,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite' //tailwind css plugin for vite
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/simple-expense-tracker/',
   plugins: [
     vue(),
     vueJsx(),
