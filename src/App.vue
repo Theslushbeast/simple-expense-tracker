@@ -131,7 +131,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen transition-colors duration-500 font-sans p-4 md:p-8" :class="bgApp">
+  <div class="min-h-screen overflow-x-hidden transition-colors duration-500 font-sans p-4 md:p-8" :class="bgApp">
     <div class="max-w-xl mx-auto">
       
       <!-- ONBOARDING VIEW -->
@@ -151,11 +151,13 @@
 
         <div class="mb-8">
           <label class="block text-sm font-bold mb-2" :class="textSub">Fixed Bills</label>
-          <div class="flex gap-2 mb-4">
-            <input v-model="newBill.name" type="text" placeholder="Bill Name" class="flex-1 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
-            <input v-model="newBill.amount" type="number" placeholder="Amount" class="w-32 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
-            <button @click="addFixedBill" class="px-6 font-bold rounded-2xl transition-colors border shadow-sm" :class="btnSecondary">+</button>
-          </div>
+          <div class="flex flex-col sm:flex-row gap-3 mb-4">
+			<input v-model="newBill.name" type="text" placeholder="Bill Name" class="flex-1 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
+			<div class="flex gap-3">
+				<input v-model="newBill.amount" type="number" placeholder="Amount" class="flex-1 sm:w-32 p-4 rounded-2xl outline-none transition-all" :class="bgInput">
+				<button @click="addFixedBill" class="px-6 font-bold rounded-2xl transition-colors border shadow-sm" :class="btnSecondary">+</button>
+			</div>
+		</div>
           
           <div v-for="(bill, index) in fixedBills" :key="index" class="flex justify-between items-center p-4 rounded-2xl mb-2 border shadow-sm" :class="bgItem">
             <span class="font-semibold">{{ bill.name }}</span>
